@@ -84,6 +84,62 @@ function renderWeather() {
       );
 
       $("#searchHistory").prepend(cityNameList);
+
+      // latitude uvi position
+      var latitude = response.coord.lat;
+
+      // longitude uvi position
+      var longitude = response.coord.lon;
+
+      // uvi queryURL to display uvi data
+      var queryURLuvi =
+        "https://api.openweathermap.org/data/2.5/uvi/forecast?&units=imperial&appid=f5e25466bfa1e46ad656169c960527a3&q=" +
+        "&lat=" +
+        latitude +
+        "&lon=" +
+        longitude;
+
+      // ajax call for UVI
+      $.ajax({
+        url: queryURLuvi,
+        method: "GET",
+      }).then(function (response) {
+        // gets the UVI
+        var uvIndex = response[0].value;
+
+        // empty color display
+        var uvColor = "";
+
+        // if its less then three then highlight green
+        if (uvIndex < 3) {
+          uvColor = "green";
+
+          // if its less then 6 then highlight yellow
+        } else if (uvIndex < 6) {
+          uvColor = "yellow";
+
+          // if its less then 8 then highlight orange
+        } else if (uvIndex < 8) {
+          uvColor = "orange";
+
+          // if its less then 11 then highlight red
+        } else if (uvIndex < 11) {
+          uvColor = "red";
+
+          // if its anything else then highlight violet
+        } else {
+          uvColor = "violet";
+        }
+
+        // gets the UV Index
+        var cityUVIndex = $("<p>").text("UV Index: " + uvIndex);
+
+        // highlights the appropiate color
+        $(cityUVIndex).attr("style", "width:8%; background-color: " + uvColor);
+
+        // displays in the city box
+        $("#cityList").append(cityUVIndex);
+      });
     })
   })
 }
