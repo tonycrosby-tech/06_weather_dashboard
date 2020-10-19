@@ -144,6 +144,83 @@ function renderWeather() {
   })
 }
 
+function fiveDayForecast() {
+  $("#search-button").on("click", function () {
+  var city = $("#search-input").val();
+
+  // 5 day forecast
+  var queryURLforecast =
+    "https://api.openweathermap.org/data/2.5/forecast?&units=imperial&appid=f5e25466bfa1e46ad656169c960527a3&q=" +
+    city;
+
+  // ajax call to get 5 day forecast at 3pm everyday
+  $.ajax({
+    url: queryURLforecast,
+    method: "GET",
+    error: (err => { //If API through error then alert 
+      alert("Your city was not found. Check your spelling or enter a city code")
+      return;
+    })
+
+    // Store all of the data inside of an object called forecast
+    }).then(function (forecast) {
+      // log forecast in the console
+      console.log(forecast);
+
+      // gets the day of the forecast
+      var nowMoment = moment();
+
+      // Loop through the forecast array and display a single forecast for 5 days
+      for (var i = 6; i < forecast.list.length; i += 8) {
+        // creating an h5 to put the date in
+        var forecastDate = $("<h5>");
+
+        // this is the day in the array
+        var forecastDay = (i + 2) / 8;
+
+        // empty the box that displays the forecast
+        $("#forecast-date" + forecastDay).empty();
+
+        // displays the date and add 1 day to display 5 days
+        $("#forecast-date" + forecastDay).append(
+          forecastDate.text(nowMoment.add(1, "days").format("M/D/YYYY"))
+        );
+
+        // create an img for the forecast
+        var forecastIcon = $("<img>");
+
+        // gets the icon from the DOM
+        forecastIcon.attr(
+          "src",
+          "https://openweathermap.org/img/w/" +
+            forecast.list[i].weather[0].icon +
+            ".png"
+        );
+
+        // empty the current icon
+        $("#forecast-icon" + forecastDay).empty();
+
+        // gets the new icon then displays it
+        $("#forecast-icon" + forecastDay).append(forecastIcon);
+
+        // gets the temperature and displays it
+        $("#forecast-temp" + forecastDay).text(
+          "Temp: " + Math.round(forecast.list[i].main.temp) + " °F"
+        );
+
+        // gets the humidity and displays it
+        $("#forecast-humidity" + forecastDay).text(
+          "Humidity: " + forecast.list[i].main.humidity + "%"
+        );
+
+        // style of the cards
+        $(".forecast").attr("style", "background-color:blue; color:white");
+      };
+    })
+  })
+}
+
 $(document).ready(function() {
   renderWeather();
+  fiveDayForecast();
 });
