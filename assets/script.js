@@ -44,5 +44,17 @@ function renderWeather(q) {
       $(".form-errors").text("Please enter an actual City").show();
       return;
     })
-  }).then
+  }).then(function (response) {
+    var cityNameInput = $("<h2>").text(response.name);
+    var cityNameList = $("<button id='searchHistory'>").text(response.name);
+
+    localStorage.setItem("city", JSON.stringify(city));
+
+    cityNameList.addClass("list-group-item list-group-item-action");
+
+    var weatherIcon = $("<img>").attr(
+      "src",
+      "https://openweathermap.org/img/wn/" + response.weather[0].icon + ".png"
+    );
+  })
 }
