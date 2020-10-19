@@ -9,3 +9,31 @@ nav {
   line-height: 15px;
   margin: 5px 0 0;
 }
+
+.forecast {
+  padding: 30px;
+  margin-left: 1rem;
+}
+
+#forecast-cards {
+  display: flex;
+  justify-content: space-between;
+  margin: center;
+  padding: 30px 20px;
+  float: right;
+
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.input-group {
+  padding: 20px 30px;
+  float: left;
+}
+
+.box {
+  margin-left: auto;
+  border: solid 1px;
+}
