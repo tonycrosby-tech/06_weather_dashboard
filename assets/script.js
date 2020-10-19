@@ -87,3 +87,7 @@ function renderWeather() {
     })
   })
 }
+
+$(document).ready(function() {
+  renderWeather();
+});
