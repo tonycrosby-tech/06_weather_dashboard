@@ -11,7 +11,7 @@ function display_ct() {
   display_c();
 }
 
-var queryResult = '';
+var q = '';
 
 var API_KEY = 'f5e25466bfa1e46ad656169c960527a3';
 
@@ -22,5 +22,27 @@ function currentLocation() {
   }).then(function (response) {
       queryResult = response.city || 'exton';
       console.log(queryResult);
+
+      renderWeather(q);
   });
 };
+
+function renderWeather(q) {
+  $("#search-button").on('click', function() {
+    q = $("#search-input").val();
+  })
+
+  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +
+  q +
+  "&appid=" +
+  API_KEY;
+
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+    error: (err => { //If API through error then say
+      $(".form-errors").text("Please enter an actual City").show();
+      return;
+    })
+  }).then
+}
