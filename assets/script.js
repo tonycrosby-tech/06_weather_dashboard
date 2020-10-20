@@ -7,11 +7,11 @@ function display_c() {
 // function to create the time
 function display_ct() {
   var x = new Date();
-  document.getElementById('ct').innerHTML = x;
+  document.getElementById("ct").innerHTML = x;
   display_c();
 }
 
-var API_KEY = 'f5e25466bfa1e46ad656169c960527a3';
+var API_KEY = "f5e25466bfa1e46ad656169c960527a3";
 
 // function currentLocation() {
 //   $.ajax({
@@ -27,20 +27,22 @@ var API_KEY = 'f5e25466bfa1e46ad656169c960527a3';
 
 function renderWeather() {
   $("#search-button").on("click", function () {
-  var city = $("#search-input").val();
+    var city = $("#search-input").val();
 
-  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +
-  city +
-  "&appid=" +
-  API_KEY;
+    var queryURL =
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
+      city +
+      "&appid=" +
+      API_KEY;
 
-  $.ajax({
-    url: queryURL,
-    method: "GET",
-    error: (err => { //If API through error then say
-      $(".form-errors").text("Please enter an actual City").show();
-      return;
-      })
+    $.ajax({
+      url: queryURL,
+      method: "GET",
+      error: (err) => {
+        //If API through error then say
+        $(".form-errors").text("Please enter an actual City").show();
+        return;
+      },
     }).then(function (response) {
       var cityNameInput = $("<h2>").text(response.name);
       var cityNameList = $("<button>").text(response.name);
@@ -61,7 +63,7 @@ function renderWeather() {
       var tempF = (tempInt * 9) / 5 - 459.67;
 
       var cityTemp = $("<p>").text(
-      "Current Temperature: " + Math.floor(tempF) + " °F"
+        "Current Temperature: " + Math.floor(tempF) + " °F"
       );
 
       var cityHumidity = $("<p>").text(
@@ -135,34 +137,29 @@ function renderWeather() {
         var cityUVIndex = $("<p>").text("UV Index: " + uvIndex);
 
         // highlights the appropiate color
-        $(cityUVIndex).attr("style", "width:8%; background-color: " + uvColor);
+        $(cityUVIndex).attr("style", "width:10%; background-color: " + uvColor);
 
         // displays in the city box
         $("#cityList").append(cityUVIndex);
       });
-    })
-  })
+    });
+  });
 }
 
 function fiveDayForecast() {
   $("#search-button").on("click", function () {
-  var city = $("#search-input").val();
+    var city = $("#search-input").val();
 
-  // 5 day forecast
-  var queryURLforecast =
-    "https://api.openweathermap.org/data/2.5/forecast?&units=imperial&appid=f5e25466bfa1e46ad656169c960527a3&q=" +
-    city;
+    // 5 day forecast
+    var queryURLforecast =
+      "https://api.openweathermap.org/data/2.5/forecast?&units=imperial&appid=f5e25466bfa1e46ad656169c960527a3&q=" +
+      city;
 
-  // ajax call to get 5 day forecast at 3pm everyday
-  $.ajax({
-    url: queryURLforecast,
-    method: "GET",
-    error: (err => { //If API through error then alert 
-      alert("Your city was not found. Check your spelling or enter a city code")
-      return;
-    })
-
-    // Store all of the data inside of an object called forecast
+    // ajax call to get 5 day forecast at 3pm everyday
+    $.ajax({
+      url: queryURLforecast,
+      method: "GET",
+      // Store all of the data inside of an object called forecast
     }).then(function (forecast) {
       // log forecast in the console
       console.log(forecast);
@@ -215,12 +212,12 @@ function fiveDayForecast() {
 
         // style of the cards
         $(".forecast").attr("style", "background-color:blue; color:white");
-      };
-    })
-  })
+      }
+    });
+  });
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   renderWeather();
   fiveDayForecast();
 });
