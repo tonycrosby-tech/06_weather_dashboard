@@ -11,12 +11,9 @@ function display_ct() {
   display_c();
 }
 
+city = [];
+
 var API_KEY = 'f5e25466bfa1e46ad656169c960527a3';
-
-var cityname;
-
-var cityList = [];
-
 
 function renderWeather() {
   $("#search-button").on("click", function () {
@@ -27,6 +24,8 @@ function renderWeather() {
   "&appid=" +
   API_KEY;
 
+  $(".form-errors").text("Please enter an actual City").hide();
+  
   $.ajax({
     url: queryURL,
     method: "GET",
@@ -36,11 +35,9 @@ function renderWeather() {
       })
     }).then(function (response) {
       var cityNameInput = $("<h2 class='text-center'>").text(response.name);
-      var cityNameList = $("<button id='search-button'>").text(response.name);
+      var cityNameList = $(`<button class='cityName mt-2 text-center' data-name='${city}'>`).text(response.name);
 
-      localStorage.setItem("city", JSON.stringify(city));
-
-      cityNameList.addClass("list-group-item list-group-item-action");
+      cityNameList.addClass("list-group-item-action");
 
       var weatherIcon = $("<img>").attr(
         "src",
@@ -125,10 +122,9 @@ function renderWeather() {
         }
 
         // gets the UV Index
-        var cityUVIndex = $("<p>").text("UV Index: " + uvIndex);
-
+        var cityUVIndex = $("<span class='border d-inline-block rounded px-2 py-1 mb-4'>").text("UV Index: " + uvIndex);
         // highlights the appropiate color
-        $(cityUVIndex).attr("style", "width:9%; background-color: " + uvColor);
+        $(cityUVIndex).attr("style", "background-color: " + uvColor);
 
         // displays in the city box
         $("#cityList").append(cityUVIndex);
@@ -208,10 +204,8 @@ function fiveDayForecast() {
   })
 }
 
-var searchBtn = document.getElementById("search-button");
-
-$(searchBtn).ready(function(city) {
-  city = $("#search-input");
+$(document).ready(function() {
   renderWeather();
   fiveDayForecast();
 });
+
