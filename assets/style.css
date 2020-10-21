@@ -2,6 +2,11 @@ nav {
   background-image: url("./bkg-sky.jpg");
 }
 
+body {
+  background-image: url("./bkg-body.jpg");
+  background-size: auto;
+}
+
 .form-errors {
   color: #cc0033;
   display: inline-block;
@@ -13,6 +18,8 @@ nav {
 .forecast {
   padding: 30px;
   margin-left: 1rem;
+  background-image: url(./bkg-sky.jpg);
+  color: white;
 }
 
 #forecast-weather {
@@ -24,11 +31,6 @@ nav {
   float: right;
   margin-left: -25px;
 
-}
-
-.box {
-  border: solid 1px;
-  margin: auto;
 }
 
 table {
@@ -45,9 +47,8 @@ h2 {
 
 #forecast-cards {
   display: flex;
-  justify-content: space-around;
-  padding: 30px 30px;
-  font-size: small;
+  justify-content: space-between;
+  font-size: medium;
   
 }
 
