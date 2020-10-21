@@ -1,9 +1,9 @@
 nav {
-  background-image: url("./bkg-sky.jpg");
+  background-image: url("bkg-sky.jpg");
 }
 
 body {
-  background-image: url("./bkg-body.jpg");
+  background-image: url("bkg-body.jpg");
   background-size: auto;
 }
 
@@ -18,7 +18,7 @@ body {
 .forecast {
   padding: 30px;
   margin-left: 1rem;
-  background-image: url(./bkg-sky.jpg);
+  background-image: url("bkg-sky.jpg");
   color: white;
 }
 
@@ -31,10 +31,6 @@ body {
   float: right;
   margin-left: -25px;
 
-}
-
-table {
-  width: 25%;
 }
 
 h2 {
@@ -65,6 +61,6 @@ h4 {
   font-size: large;
 }
 
-hr {
-  background-color: black;
+.list-group-item-action {
+  margin-top: 0.5rem;
 }

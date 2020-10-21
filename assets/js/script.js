@@ -281,3 +281,7 @@
 //     });
 //   });
 // }
+
+// $(document).ready(function() {
+//     renderweather(searchArray)
+// })
