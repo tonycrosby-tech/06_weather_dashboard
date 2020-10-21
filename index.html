@@ -43,17 +43,23 @@
     <div class="container">
         <!-- Main Row -->
         <div class="row">
+            <!--Main Col  -->
             <div class="col-sm-12">
+                <!-- Search text -->
                 <div>
                     <h2 class="mt-2">Search for a City:</h2>
-                </div> 
+                </div>
+                 <!--City info goes here  -->
                 <div class="col-8 card float-right">
                     <div id="cityList" class="is-hidden" for="city-input">
                         <h2 class="text-center">City Name:</h2>
                     </div>
                 </div>
+
+                <!-- If error - then error output goes here -->
                 <div class="form-errors"></div>
 
+                <!-- Input and Search button -->
                 <div class="input-group w-25">
                     <input id="city" type="text" placeholder="Enter a City Name" class="form-control">
                     <button class="btn btn-primary" id="search">
@@ -61,7 +67,7 @@
                     </button>
 
                 </div>
-                
+                <!-- Recent cities with a ul list of cities with buttons -->
                 <h3 class="mt-2">Recent cities:</h3>
                 <ul id="searchHistory" class='list-group w-25'></ul>
             </div>
@@ -206,9 +212,9 @@
             searchArray = [];
         } else {
             for (var i = 0; i < searchStorage.length; i++) {
-            var storedHistoryItem = $("<li>");
+            var storedHistoryItem = $("<button>");
             storedHistoryItem.text(searchStorage[i]);
-            storedHistoryItem.attr("class", "list-group-item");
+            storedHistoryItem.attr("class", "list-group-item-action");
             searchHistoryDiv.append(storedHistoryItem);
             searchArray = searchStorage;
             }
