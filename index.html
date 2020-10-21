@@ -217,9 +217,9 @@
 
         function createSearchHistory() {
         if (searchCity !== "") {
-            var searchHistoryItem = $("<li>");
+            var searchHistoryItem = $("<button>");
             searchHistoryItem.text(searchCity);
-            searchHistoryItem.attr("class", "list-group-item");
+            searchHistoryItem.attr("class", "mt-2 list-group-item-action");
             searchHistoryDiv.append(searchHistoryItem);
             searchArray.push(searchCity);
             localStorage.setItem("search", JSON.stringify(searchArray));
@@ -234,7 +234,7 @@
         createSearchHistory();
         });
 
-        searchHistoryDiv.on("click", ".list-group-item", function (event) {
+        searchHistoryDiv.on("click", ".list-group-item-action", function (event) {
         searchCity = event.target.textContent;
         renderWeather();
         });
