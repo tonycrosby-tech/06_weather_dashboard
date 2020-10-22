@@ -50,22 +50,19 @@ $(document).ready(function() {
     }
   }
 
-  init();
-
   // call from localstorage if last stored city was in localstorage then it is loaded on page
   function init() {
-    
-      if (searchStorage !== null) {
-        searchArray = searchStorage;
-      }
 
       if (localStorage.getItem("city")) {
-        searchArray === [];
+        searchArray = [];
       } else {
         console.log("no data in localstorage");
-        searchArray === [];
       }
   }
+
+  window.addEventListener("load", function(searchArray){
+    renderWeather(searchStorage);
+  });
 
   // This function creates a button that appends to the search history
   function createSearchHistory() {
@@ -84,18 +81,19 @@ $(document).ready(function() {
   searchBtn.on("click", function (event) {
     event.preventDefault();
     searchCity = cityInput.val();
-    renderWeather();
+    renderWeather(searchCity);
     createSearchHistory();
   });
 
   // on click i want to render the weather data and create a button that i can click to move back and forth displaying each city
   searchHistoryDiv.on("click", ".list-group-item-action", function (event) {
     searchCity = event.target.textContent;
-    renderWeather();
+    renderWeather(searchCity);
   });
 
   // this function has the current weather the UVI and the forecast
-  function renderWeather() {
+  function renderWeather(searchCity) {
+    
     var queryURL =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
       searchCity +
