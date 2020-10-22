@@ -60,7 +60,7 @@ $(document).ready(function() {
       }
   }
 
-  window.addEventListener("load", function(searchArray){
+  window.addEventListener("load", function(){
     renderWeather(searchStorage);
   });
 
