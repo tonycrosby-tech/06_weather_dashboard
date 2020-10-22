@@ -10,3 +10,4 @@ function display_ct() {
   document.getElementById("ct").innerHTML = x;
   display_c();
 }
+

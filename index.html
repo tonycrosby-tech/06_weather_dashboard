@@ -78,7 +78,7 @@
         <div id="forecast-weather" class="mt-2 float-right col-md-12-sm">
               <!-- Text for forecast -->
               <h4 class="text-center">5-Day Forecast:</h4>
-
+              <hr>
               <!-- First Day Forecast -->
               <div id="forecast-cards">
                   <div class="card forecast">
@@ -197,7 +197,7 @@ var searchArray = [];
 var searchCity = cityInput.val();
 
 // storing items in localstorage
-var searchStorage = JSON.parse(localStorage.getItem("search"));
+var searchStorage = JSON.parse(localStorage.getItem("city"));
 
 appendStorage();
 
@@ -216,6 +216,17 @@ function appendStorage() {
   }
 }
 
+// call from localstorage if last stored city was in localstorage then it is loaded on page
+function init() {
+    var searchStorage = JSON.parse(localStorage.getItem("city"));
+  
+    if (searchStorage !== null) {
+      searchArray = searchStorage;
+    }
+}
+
+init();
+
 // This function creates a button that appends to the search history
 function createSearchHistory() {
   if (searchCity !== "") {
@@ -224,7 +235,7 @@ function createSearchHistory() {
     searchHistoryItem.attr("class", "mt-2 list-group-item-action");
     searchHistoryDiv.append(searchHistoryItem);
     searchArray.push(searchCity);
-    localStorage.setItem("search", JSON.stringify(searchArray));
+    localStorage.setItem("city", JSON.stringify(searchArray));
     cityInput.val("");
   }
 }
@@ -448,7 +459,6 @@ function renderWeather() {
     });
   });
 }
-
 </script>
 
     <footer>
