@@ -11,8 +11,8 @@ function display_ct() {
   display_c();
 }
 
-$(document).ready(function() {
-    // my unique api key
+$(document).ready(function () {
+  // my unique api key
   var API_KEY = "f5e25466bfa1e46ad656169c960527a3";
 
   // search button
@@ -52,15 +52,14 @@ $(document).ready(function() {
 
   // call from localstorage if last stored city was in localstorage then it is loaded on page
   function init() {
-
-      if (localStorage.getItem("city")) {
-        searchArray = [];
-      } else {
-        console.log("no data in localstorage");
-      }
+    if (localStorage.getItem("city")) {
+      searchArray = [];
+    } else {
+      console.log("no data in localstorage");
+    }
   }
 
-  window.addEventListener("load", function(){
+  window.addEventListener("load", function () {
     renderWeather(searchStorage);
   });
 
@@ -93,7 +92,6 @@ $(document).ready(function() {
 
   // this function has the current weather the UVI and the forecast
   function renderWeather(searchCity) {
-    
     var queryURL =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
       searchCity +
@@ -163,7 +161,7 @@ $(document).ready(function() {
       var cityWindSpeed = $("<p>").text(
         "Wind Speed: " + Math.round(response.wind.speed) + " MPH"
       );
-      
+
       $("#cityList").empty();
       // appends everything to output the weather information
       $("#cityList").append(
@@ -174,7 +172,7 @@ $(document).ready(function() {
         cityHumidity,
         cityWindSpeed
       );
-      
+
       // latitude uvi position
       var latitude = response.coord.lat;
 
@@ -295,5 +293,4 @@ $(document).ready(function() {
       });
     });
   }
-})
-
+});
