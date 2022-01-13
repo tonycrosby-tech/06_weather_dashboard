@@ -5,7 +5,7 @@
 
 ### > To get to the Repository <a target="_blank" href="https://github.com/tonycrosby-tech/06_weather_dashboard"> Click this link </a>
 
-### > To get to the Deployed Website <a target="_blank" href="https://tonycrosby.net/06_weather_dashboard/"> Click this link </a>
+### > To get to the Deployed Website <a target="_blank" href="https://tonycrosby-tech.github.io/06_weather_dashboard/"> Click this link </a>
 
 #
 
